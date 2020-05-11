@@ -39,7 +39,6 @@ public class PlayerMove : MonoBehaviour
 			rb2D.velocity = new Vector2(-runSpeed,rb2D.velocity.y);
 			animator.SetBool("Running", true);
 			spriteRend.flipX=true;
-
 		}
 		else
 		{
