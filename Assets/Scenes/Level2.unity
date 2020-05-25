@@ -4887,6 +4887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCleared: {fileID: 2005228023}
+  transition: {fileID: 0}
 --- !u!1 &1700554094
 GameObject:
   m_ObjectHideFlags: 0
@@ -5317,6 +5318,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2364423465562818425, guid: 2d4ce3368ce18694eb9de7416ae24d21,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1900128804}
     - target: {fileID: 7094328993429310773, guid: 2d4ce3368ce18694eb9de7416ae24d21,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5399,6 +5405,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d4ce3368ce18694eb9de7416ae24d21, type: 3}
+--- !u!95 &1900128804 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7094328993429310775, guid: 2d4ce3368ce18694eb9de7416ae24d21,
+    type: 3}
+  m_PrefabInstance: {fileID: 1900128803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1901149337
 PrefabInstance:
   m_ObjectHideFlags: 0
