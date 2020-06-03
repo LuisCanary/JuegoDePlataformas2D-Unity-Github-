@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerSelect : MonoBehaviour
 {
 
-	public enum Player {Frog, VirtualGuy,PinkMan };
+	public bool enableSelectCharacter;
+	public enum Player {Frog, VirtualGuy,PinkMan, MaskDude };
 	public Player playerSelected;
 
 	public Animator animator;
@@ -14,29 +15,65 @@ public class PlayerSelect : MonoBehaviour
 	public RuntimeAnimatorController[] playersController;
 	public Sprite[] playersRenderer;
 
-   
-    void Start()
-    {
-		switch (playerSelected)
+
+	void Start()
+	{
+		if (!enableSelectCharacter)
 		{
-			case Player.Frog:
+			ChangePlayerInMenu();
+		}
+		else
+		{
+			switch (playerSelected)
+			{
+				case Player.Frog:
+					spriteRenderer.sprite = playersRenderer[0];
+					animator.runtimeAnimatorController = playersController[0];
+
+					break;
+				case Player.PinkMan:
+					spriteRenderer.sprite = playersRenderer[1];
+					animator.runtimeAnimatorController = playersController[1];
+					break;
+				case Player.VirtualGuy:
+					spriteRenderer.sprite = playersRenderer[2];
+					animator.runtimeAnimatorController = playersController[2];
+					break;
+				case Player.MaskDude:
+					spriteRenderer.sprite = playersRenderer[3];
+					animator.runtimeAnimatorController = playersController[3];
+					break;
+				default:
+					break;
+			}
+		}
+
+	}
+
+	public void ChangePlayerInMenu()
+	{
+		switch (PlayerPrefs.GetString("PlayerSelected"))
+		{
+			case "Frog":
 				spriteRenderer.sprite = playersRenderer[0];
 				animator.runtimeAnimatorController = playersController[0];
 
 				break;
-			case Player.VirtualGuy:
+			case "PinkMan":
 				spriteRenderer.sprite = playersRenderer[1];
 				animator.runtimeAnimatorController = playersController[1];
 				break;
-			case Player.PinkMan:
+			case "VirtualGuy":
 				spriteRenderer.sprite = playersRenderer[2];
 				animator.runtimeAnimatorController = playersController[2];
 				break;
-
+			case "MaskDude":
+				spriteRenderer.sprite = playersRenderer[3];
+				animator.runtimeAnimatorController = playersController[3];
+				break;
 			default:
 				break;
 		}
 	}
 
-   
 }

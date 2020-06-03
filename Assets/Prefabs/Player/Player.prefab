@@ -207,10 +207,12 @@ MonoBehaviour:
   - {fileID: 9100000, guid: ccc9d40a3b1e53c46b921c4053099db2, type: 2}
   - {fileID: 9100000, guid: 44c2250949d11fd4ca074501d8e6079c, type: 2}
   - {fileID: 9100000, guid: a776eb967e928a44da8f543cc36702d4, type: 2}
+  - {fileID: 9100000, guid: 036a8736ad250fb469575c7959b9d322, type: 2}
   playersRenderer:
   - {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
   - {fileID: -6367560908665664636, guid: d348dff3819df794186a80cb95777629, type: 3}
   - {fileID: -6367560908665664636, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: -6367560908665664636, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
 --- !u!1 &7094328993630268867
 GameObject:
   m_ObjectHideFlags: 0

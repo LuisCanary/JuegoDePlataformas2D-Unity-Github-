@@ -9690,7 +9690,7 @@ PrefabInstance:
     - target: {fileID: 1846041826520090724, guid: 2d4ce3368ce18694eb9de7416ae24d21,
         type: 3}
       propertyPath: playerSelected
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2364423465562818425, guid: 2d4ce3368ce18694eb9de7416ae24d21,
         type: 3}
