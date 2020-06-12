@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7094328993429310771}
   - component: {fileID: 7094328993429310770}
   - component: {fileID: 7094328993429310768}
+  - component: {fileID: 7391527745521360631}
   - component: {fileID: 2364423465562818425}
   - component: {fileID: 1846041826520090724}
   m_Layer: 0
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7094328993429310774}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0f6dc733ba04834dbc89fbe6514c9e7, type: 3}
   m_Name: 
@@ -173,6 +174,25 @@ MonoBehaviour:
   betterJump: 1
   fallMultiplier: 0.5
   lowJumpMultiplier: 1
+  spriteRenderer: {fileID: 7094328993429310772}
+  animator: {fileID: 7094328993429310775}
+--- !u!114 &7391527745521360631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094328993429310774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca13177f9c6331d4d8fc87b76006834e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
+  runSpeedHorizontal: 2
+  runSpeed: 1.25
+  jumpSpeed: 3
+  doubleJumpSpeed: 2.5
   spriteRenderer: {fileID: 7094328993429310772}
   animator: {fileID: 7094328993429310775}
 --- !u!114 &2364423465562818425
@@ -200,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809e447ba46269f41a19c7da4ef7815b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableSelectCharacter: 0
   playerSelected: 0
   animator: {fileID: 7094328993429310775}
   spriteRenderer: {fileID: 7094328993429310772}
