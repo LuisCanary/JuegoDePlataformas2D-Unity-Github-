@@ -176,6 +176,8 @@ MonoBehaviour:
   lowJumpMultiplier: 1
   spriteRenderer: {fileID: 7094328993429310772}
   animator: {fileID: 7094328993429310775}
+  dustParticleLeft: {fileID: 0}
+  dustParticleRight: {fileID: 0}
 --- !u!114 &7391527745521360631
 MonoBehaviour:
   m_ObjectHideFlags: 0

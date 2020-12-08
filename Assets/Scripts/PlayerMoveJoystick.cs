@@ -46,6 +46,7 @@ public class PlayerMoveJoystick : MonoBehaviour
 		{		
 			spriteRenderer.flipX = true;
 			animator.SetBool("Run", true);
+
 		}
 
 		else

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -26,13 +27,23 @@ public class PlayerMove : MonoBehaviour
 
 	public Animator animator;
 
-    void Start()
+	public GameObject dustLeft;
+	public GameObject dustRight;
+
+	public float dashCooldown;
+
+	public float dashForce=30;
+
+	public GameObject dashParticle;
+
+	void Start()
     {
 		rb2D = GetComponent<Rigidbody2D>();
     }
 
 	private void Update()
 	{
+		dashCooldown -= Time.deltaTime;
 
 		if (Input.GetKey("space"))
 		{
@@ -60,6 +71,8 @@ public class PlayerMove : MonoBehaviour
 		{
 			animator.SetBool("Jump", true);
 			animator.SetBool("Run", false);
+			dustLeft.SetActive(false);
+			dustRight.SetActive(false);
 		}
 		if (CheckGround.isGrounded == true)
 		{
@@ -87,7 +100,24 @@ public class PlayerMove : MonoBehaviour
 			spriteRenderer.flipX = false;
 			animator.SetBool("Run", true);
 
+            if (CheckGround.isGrounded==true)
+            {
+				dustLeft.SetActive(true);
+				dustRight.SetActive(false);
+			}
+
+			if (Input.GetKey("e") && dashCooldown <= 0)
+			{
+				Dash();
+			}
+
+
 		}
+
+        else if (Input.GetKey("e")&& dashCooldown<=0)
+        {
+			Dash();
+        }
 
 		else if (Input.GetKey("a") || Input.GetKey("left"))
 		{
@@ -95,12 +125,24 @@ public class PlayerMove : MonoBehaviour
 			spriteRenderer.flipX = true;
 			animator.SetBool("Run", true);
 
+			if (CheckGround.isGrounded == true)
+			{
+				dustLeft.SetActive(false);
+				dustRight.SetActive(true);
+			}
+			if (Input.GetKey("e") && dashCooldown <= 0)
+			{
+				Dash();
+			}
 		}
 
 		else
 		{
 			rb2D.velocity = new Vector2(0, rb2D.velocity.y);
 			animator.SetBool("Run", false);
+
+			dustLeft.SetActive(false);
+			dustRight.SetActive(false);
 
 		}
 
@@ -121,6 +163,29 @@ public class PlayerMove : MonoBehaviour
 		}
 
     }
+
+	public void Dash()
+	{
+
+		GameObject dashObject;
+
+        dashObject = Instantiate(dashParticle,transform.position,transform.rotation);
+
+        if (spriteRenderer.flipX==true)
+        {
+			rb2D.AddForce(Vector2.left*dashForce,ForceMode2D.Impulse);
+        }
+        else
+        {
+			rb2D.AddForce(Vector2.right * dashForce, ForceMode2D.Impulse);
+		}
+
+		dashCooldown = 2;
+
+		Destroy(dashObject,1);
+
+
+	}
 
 
 
