@@ -36,6 +36,15 @@ public class PlayerMove : MonoBehaviour
 
 	public GameObject dashParticle;
 
+
+	bool isTouchingFront = false;
+	bool wallSliding;
+
+	public float wallSlidingSpeed = 0.75f;
+
+	bool isTouchingDerecha;
+	bool isTouchingIzquierda;
+
 	void Start()
     {
 		rb2D = GetComponent<Rigidbody2D>();
@@ -45,7 +54,7 @@ public class PlayerMove : MonoBehaviour
 	{
 		dashCooldown -= Time.deltaTime;
 
-		if (Input.GetKey("space"))
+		if (Input.GetKey("space") && wallSliding==false)
 		{
 			if (CheckGround.isGrounded)
 			{
@@ -89,19 +98,40 @@ public class PlayerMove : MonoBehaviour
 		{
 			animator.SetBool("Falling", false);
 		}
+
+
+        if (isTouchingFront==true && CheckGround.isGrounded==false)
+        {
+			wallSliding = true;
+        }
+        else
+        {
+			wallSliding = false;
+        }
+
+
+        if (wallSliding)
+        {
+			animator.Play("Wall");
+			rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y,-wallSlidingSpeed,float.MaxValue));
+        }
+
+
+
+
 	}
 
 	void FixedUpdate()
     {
 
-		if (Input.GetKey("d") || Input.GetKey("right"))
+		if (Input.GetKey("d") || Input.GetKey("right") && isTouchingDerecha == false)
 		{
 			rb2D.velocity = new Vector2(runSpeed, rb2D.velocity.y);
 			spriteRenderer.flipX = false;
 			animator.SetBool("Run", true);
 
-            if (CheckGround.isGrounded==true)
-            {
+			if (CheckGround.isGrounded == true)
+			{
 				dustLeft.SetActive(true);
 				dustRight.SetActive(false);
 			}
@@ -114,12 +144,12 @@ public class PlayerMove : MonoBehaviour
 
 		}
 
-        else if (Input.GetKey("e")&& dashCooldown<=0)
-        {
+		else if (Input.GetKey("e") && dashCooldown <= 0)
+		{
 			Dash();
-        }
+		}
 
-		else if (Input.GetKey("a") || Input.GetKey("left"))
+		else if (Input.GetKey("a") || Input.GetKey("left") && isTouchingIzquierda == false)
 		{
 			rb2D.velocity = new Vector2(-runSpeed, rb2D.velocity.y);
 			spriteRenderer.flipX = true;
@@ -187,6 +217,25 @@ public class PlayerMove : MonoBehaviour
 
 	}
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ParedDerecha"))
+        {
+			isTouchingFront = true;
+			isTouchingDerecha = true;
+        }
 
+		if (collision.gameObject.CompareTag("ParedIzquierda"))
+		{
+			isTouchingFront = true;
+			isTouchingIzquierda = true;
+		}
+	}
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+		isTouchingFront = false;
+		isTouchingDerecha = false;
+		isTouchingIzquierda = false;
+    }
 }

@@ -11,7 +11,8 @@ public class OpenDoor : MonoBehaviour
 	public string levelName;
 	private bool inDoor = false;
 
-
+	private float doorTime = 3;
+	private float startTime = 3;
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -26,11 +27,24 @@ public class OpenDoor : MonoBehaviour
 	{
 		text.gameObject.SetActive(false);
 		inDoor = false;
+
+		doorTime = startTime;
 	}
 
 
 	private void Update()
 	{
+
+        if (inDoor)
+        {
+			doorTime -= Time.deltaTime;
+        }
+
+        if (doorTime<=0)
+        {
+			SceneManager.LoadScene(levelName);
+		}
+
 		if (inDoor && Input.GetKey("e"))
 		{
 			SceneManager.LoadScene(levelName);
